@@ -1,217 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GudVeda - Pure Desi Sweetness</title>
-    <meta name="description" content="GudVeda GudCubes – 100% natural desi gud cubes, chemical free, healthy sugar alternative.">
-<meta name="keywords" content="Gud cubes, Desi Gud, Jaggery cubes, GudVeda, Healthy sweet">
-
-    <style>
-        #miniCart {
-    background-color: #8B4513;   /* jaggery brown */
-    color: #FFFDD0;
-    padding: 8px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
-
-#miniCart span {
-    background: #FFFDD0;
-    color: #006400;
-    padding: 2px 7px;
-    border-radius: 50%;
-    margin-left: 5px;
-}
-
-        .cart-box {
-    margin-top: 20px;
-}
-
-        /* Mobile-first CSS */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: #FFFDD0; /* Cream white */
-            line-height: 1.6;
-        }
-        header {
-            background-color: #006400; /* Deep green */
-            color: #FFFDD0; /* Cream white */
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin-left: 1rem;
-        }
-        nav ul li a {
-            color: #FFFDD0;
-            text-decoration: none;
-            padding: 0.5rem;
-            transition: background-color 0.3s;
-        }
-        nav ul li a:hover {
-            background-color: #8B4513; /* Jaggery brown */
-        }
-        .hero {
-            background: linear-gradient(to right, #006400, #8B4513);
-            color: #FFFDD0;
-            padding: 4rem 1rem 2rem;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .btn {
-            background-color: #8B4513;
-            color: #FFFDD0;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #006400;
-        }
-        .product {
-            padding: 2rem 1rem;
-            text-align: center;
-            background-color: #FFFDD0;
-        }
-        .product h2 {
-            color: #006400;
-            margin-bottom: 1rem;
-        }
-        .product-details {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .product img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-        .features {
-            list-style: none;
-            padding: 0;
-        }
-        .features li {
-            margin-bottom: 0.5rem;
-        }
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero p {
-                font-size: 1.5rem;
-            }
-            nav ul {
-                flex-direction: row;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header id="home">
-        <div class="logo">GudVeda</div>
-        <div id="miniCart" onclick="openCart()">
-    🛒 <span id="cartCount">0</span>
-</div>
-
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#product">Product</a></li>
-                <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#order">Order</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Healthy Sweetness from Nature</h1>
-        <p>GudVeda GudCubes – 100% natural jaggery cubes, no sugar, no chemicals</p>
-        <a href="https://wa.me/+919906073219?text=I%20want%20to%20order%20GudCubes" class="btn">Order on WhatsApp</a>
-    </section>
-
-    <section id="product" class="product">
-        <h2>GudCubes</h2>
-        <div class="product-details">
-              <img src="gudcubes.png" alt="GudVeda GudCubes">
-            <div class="cart-box">
-    <label>Select Quantity</label><br>
-    <input type="number" id="qty" value="1" min="1" style="padding:10px; width:80px; font-size:18px;">
-    <p><strong>Total: ₹<span id="total">79</span></strong></p>
-
-    <button onclick="addToCart()" class="btn">Add to Cart</button>
-    <button onclick="checkout()" class="btn" style="margin-left:10px;">Checkout</button>
-</div>
-
-            <p><strong>Pack Size:</strong> 250g</p>
-            <p><strong>Price:</strong> ₹79</p>
-            <ul class="features">
-                <li>• Rich in iron</li>
-                <!-- Add more features here if available -->
-            </ul>
-        </div>
-    </section>
-
-    <!-- Placeholder sections for Why Us and Order -->
-    <section id="why-us" style="padding: 2rem 1rem; text-align: center; background-color: #8B4513; color: #FFFDD0;">
-        <h2>Why Us</h2>
-        <p>At GudVeda, we bring you pure, natural, ayurvedic sweetness straight from traditional Indian roots. Premium quality, simple ingredients.</p>
-    </section>
-
-    <section id="order" style="padding: 2rem 1rem; text-align: center; background-color: #006400; color: #FFFDD0;">
-        <h2>Order Now</h2>
-        <p>Contact us via WhatsApp to place your order.</p>
-        <a href="https://wa.me/+919906073219?text=I%20want%20to%20order%20GudCubes" class="btn">Order on WhatsApp</a>
-    </section>
-
-   <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let price = 79;
-    let cartQty = 0;
-
-    const qtyInput = document.getElementById("qty");
-    const cartCount = document.getElementById("cartCount");
-    const cartPage = document.getElementById("cartPage");
-    const cartQtyDisplay = document.getElementById("cartQty");
-    const cartTotalDisplay = document.getElementById("cartTotal");
 
     qtyInput.addEventListener("input", function() {
         document.getElementById("total").innerText = this.value * price;
@@ -237,11 +23,20 @@ document.addEventListener("DOMContentLoaded", function() {
         cartPage.style.display = "none";
     }
 
-    window.checkout = function() {
-        if (cartQty === 0) {
-            alert("Please add product to cart first");
-            return;
-        }
+   window.checkout = function() {
+    let name = document.getElementById("custName").value;
+    let phone = document.getElementById("custPhone").value;
+    let address = document.getElementById("custAddress").value;
+
+    if(!name || !phone || !address){
+        alert("Please fill all delivery details");
+        return;
+    }
+
+    let msg = `New GudVeda Order\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nProduct: GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
+    window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
+}
+
         let msg = `I want to order GudVeda GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
         window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
     }
@@ -253,6 +48,14 @@ document.addEventListener("DOMContentLoaded", function() {
     <h2>Your Cart</h2>
     <p>GudCubes × <span id="cartQty">1</span></p>
     <p>Total: ₹<span id="cartTotal">79</span></p>
+     <label>Name</label><br>
+<input type="text" id="custName" placeholder="Your Name" style="width:100%; padding:10px;"><br><br>
+
+<label>Phone</label><br>
+<input type="text" id="custPhone" placeholder="Mobile Number" style="width:100%; padding:10px;"><br><br>
+
+<label>Address</label><br>
+<textarea id="custAddress" placeholder="Delivery Address" style="width:100%; padding:10px;"></textarea><br><br>
 
     <button onclick="checkout()" class="btn">Proceed to Buy</button>
     <br><br>
@@ -261,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
