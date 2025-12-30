@@ -23,7 +23,7 @@
         cartPage.style.display = "none";
     }
 
-  window.checkout = function() {
+   window.checkout = function() {
     let name = document.getElementById("custName").value;
     let phone = document.getElementById("custPhone").value;
     let address = document.getElementById("custAddress").value;
@@ -33,20 +33,14 @@
         return;
     }
 
-    let total = cartQty * price;
+    let msg = `New GudVeda Order\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nProduct: GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
+    window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
+}
 
-    fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
-        method: "POST",
-        body: JSON.stringify({
-            name: name,
-            phone: phone,
-            address: address,
-            qty: cartQty,
-            total: total
-        })
-    });
-
-  
+        let msg = `I want to order GudVeda GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
+        window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
+    }
+});
 </script>
 
 
@@ -70,8 +64,6 @@
 
 </body>
 </html>
-
-
 
 
 
