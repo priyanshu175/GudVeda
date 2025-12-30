@@ -222,16 +222,22 @@ document.getElementById("qty").addEventListener("input", function() {
 });
 
 function addToCart() {
+    let qty = document.getElementById("qty").value;
+    document.getElementById("cartCount").innerText = qty;
+    alert("Added " + qty + " GudCubes to cart");
+}
+
     alert("GudCubes added to cart");
 }
 
 function checkout() {
     let qty = document.getElementById("qty").value;
-    let total = qty * price;
+    let total = qty * 79;
     let msg = `I want to order GudVeda GudCubes\nQuantity: ${qty}\nTotal: ₹${total}`;
     let url = "https://wa.me/919906073219?text=" + encodeURIComponent(msg);
     window.open(url, "_blank");
 }
+
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -256,6 +262,7 @@ function checkout() {
 
 </body>
 </html>
+
 
 
 
