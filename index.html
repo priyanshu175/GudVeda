@@ -202,42 +202,53 @@
         <a href="https://wa.me/+919906073219?text=I%20want%20to%20order%20GudCubes" class="btn">Order on WhatsApp</a>
     </section>
 
-    <script>
-       <script>
-let price = 79;
-let cartQty = 0;
+   <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let price = 79;
+    let cartQty = 0;
 
-document.getElementById("qty").addEventListener("input", function(){
-    document.getElementById("total").innerText = this.value * price;
-});
+    const qtyInput = document.getElementById("qty");
+    const cartCount = document.getElementById("cartCount");
+    const cartPage = document.getElementById("cartPage");
+    const cartQtyDisplay = document.getElementById("cartQty");
+    const cartTotalDisplay = document.getElementById("cartTotal");
 
-function addToCart(){
-    cartQty = parseInt(document.getElementById("qty").value);
-    document.getElementById("cartCount").innerText = cartQty;
-    alert(cartQty + " GudCubes added to cart");
-}
+    qtyInput.addEventListener("input", function() {
+        document.getElementById("total").innerText = this.value * price;
+    });
 
-function openCart(){
-    document.getElementById("cartQty").innerText = cartQty;
-    document.getElementById("cartTotal").innerText = cartQty * price;
-    document.getElementById("cartPage").style.display = "block";
-}
-
-function closeCart(){
-    document.getElementById("cartPage").style.display = "none";
-}
-
-function checkout(){
-    if(cartQty == 0){
-        alert("Please add product to cart first");
-        return;
+    window.addToCart = function() {
+        cartQty = parseInt(qtyInput.value) || 0;
+        cartCount.innerText = cartQty;
+        alert(cartQty + " GudCubes added to cart");
     }
-    let msg = `I want to order GudVeda GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
-    window.open("https://wa.me/919906073219?text="+encodeURIComponent(msg), "_blank");
-}
+
+    window.openCart = function() {
+        if (cartQty === 0) {
+            alert("Please add product to cart first");
+            return;
+        }
+        cartQtyDisplay.innerText = cartQty;
+        cartTotalDisplay.innerText = cartQty * price;
+        cartPage.style.display = "block";
+    }
+
+    window.closeCart = function() {
+        cartPage.style.display = "none";
+    }
+
+    window.checkout = function() {
+        if (cartQty === 0) {
+            alert("Please add product to cart first");
+            return;
+        }
+        let msg = `I want to order GudVeda GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
+        window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
+    }
+});
 </script>
 
-    </script>
+
     <div id="cartPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#FFFDD0; z-index:9999; padding:20px;">
     <h2>Your Cart</h2>
     <p>GudCubes × <span id="cartQty">1</span></p>
@@ -250,6 +261,7 @@ function checkout(){
 
 </body>
 </html>
+
 
 
 
