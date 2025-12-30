@@ -203,52 +203,40 @@
     </section>
 
     <script>
-        function openCart() {
-    let qty = document.getElementById("qty").value;
-    document.getElementById("cartQty").innerText = qty;
-    document.getElementById("cartTotal").innerText = qty * 79;
+       <script>
+let price = 79;
+let cartQty = 0;
+
+document.getElementById("qty").addEventListener("input", function(){
+    document.getElementById("total").innerText = this.value * price;
+});
+
+function addToCart(){
+    cartQty = parseInt(document.getElementById("qty").value);
+    document.getElementById("cartCount").innerText = cartQty;
+    alert(cartQty + " GudCubes added to cart");
+}
+
+function openCart(){
+    document.getElementById("cartQty").innerText = cartQty;
+    document.getElementById("cartTotal").innerText = cartQty * price;
     document.getElementById("cartPage").style.display = "block";
 }
 
-function closeCart() {
+function closeCart(){
     document.getElementById("cartPage").style.display = "none";
 }
 
-        let price = 79;
-
-document.getElementById("qty").addEventListener("input", function() {
-    let qty = this.value;
-    document.getElementById("total").innerText = qty * price;
-});
-
-function addToCart() {
-    let qty = document.getElementById("qty").value;
-    document.getElementById("cartCount").innerText = qty;
-    alert("Added " + qty + " GudCubes to cart");
+function checkout(){
+    if(cartQty == 0){
+        alert("Please add product to cart first");
+        return;
+    }
+    let msg = `I want to order GudVeda GudCubes\nQuantity: ${cartQty}\nTotal: ₹${cartQty * price}`;
+    window.open("https://wa.me/919906073219?text="+encodeURIComponent(msg), "_blank");
 }
+</script>
 
-    alert("GudCubes added to cart");
-}
-
-function checkout() {
-    let qty = document.getElementById("qty").value;
-    let total = qty * 79;
-    let msg = `I want to order GudVeda GudCubes\nQuantity: ${qty}\nTotal: ₹${total}`;
-    let url = "https://wa.me/919906073219?text=" + encodeURIComponent(msg);
-    window.open(url, "_blank");
-}
-
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
     <div id="cartPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#FFFDD0; z-index:9999; padding:20px;">
     <h2>Your Cart</h2>
@@ -262,6 +250,7 @@ function checkout() {
 
 </body>
 </html>
+
 
 
 
