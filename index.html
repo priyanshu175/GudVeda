@@ -8,6 +8,26 @@
 <meta name="keywords" content="Gud cubes, Desi Gud, Jaggery cubes, GudVeda, Healthy sweet">
 
     <style>
+        #miniCart {
+    background-color: #8B4513;   /* jaggery brown */
+    color: #FFFDD0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+#miniCart span {
+    background: #FFFDD0;
+    color: #006400;
+    padding: 2px 7px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
         .cart-box {
     margin-top: 20px;
 }
@@ -128,6 +148,10 @@
 <body>
     <header id="home">
         <div class="logo">GudVeda</div>
+        <div id="miniCart" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
+</div>
+
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -147,6 +171,7 @@
     <section id="product" class="product">
         <h2>GudCubes</h2>
         <div class="product-details">
+              <img src="gudcubes.png" alt="GudVeda GudCubes">
             <div class="cart-box">
     <label>Select Quantity</label><br>
     <input type="number" id="qty" value="1" min="1" style="padding:10px; width:80px; font-size:18px;">
@@ -156,7 +181,6 @@
     <button onclick="checkout()" class="btn" style="margin-left:10px;">Checkout</button>
 </div>
 
-            <img src="gudcubes.png" alt="GudVeda GudCubes">
             <p><strong>Pack Size:</strong> 250g</p>
             <p><strong>Price:</strong> ₹79</p>
             <ul class="features">
@@ -179,6 +203,17 @@
     </section>
 
     <script>
+        function openCart() {
+    let qty = document.getElementById("qty").value;
+    document.getElementById("cartQty").innerText = qty;
+    document.getElementById("cartTotal").innerText = qty * 79;
+    document.getElementById("cartPage").style.display = "block";
+}
+
+function closeCart() {
+    document.getElementById("cartPage").style.display = "none";
+}
+
         let price = 79;
 
 document.getElementById("qty").addEventListener("input", function() {
@@ -209,8 +244,19 @@ function checkout() {
             });
         });
     </script>
+    <div id="cartPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#FFFDD0; z-index:9999; padding:20px;">
+    <h2>Your Cart</h2>
+    <p>GudCubes × <span id="cartQty">1</span></p>
+    <p>Total: ₹<span id="cartTotal">79</span></p>
+
+    <button onclick="checkout()" class="btn">Proceed to Buy</button>
+    <br><br>
+    <button onclick="closeCart()">Close</button>
+</div>
+
 </body>
 </html>
+
 
 
 
