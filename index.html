@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <div id="offerBanner">
+🎉 NEW YEAR SALE 2026 🎉  
+<br>Buy 1 GudCubes – <b>40% OFF</b>  
+<br>Buy 2 GudCubes – <b>50% OFF</b>  
+</div>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GudVeda - Pure Desi Sweetness</title>
@@ -8,6 +14,15 @@
 <meta name="keywords" content="Gud cubes, Desi Gud, Jaggery cubes, GudVeda, Healthy sweet">
 
     <style>
+        #offerBanner {
+    background: linear-gradient(to right, #ff9800, #ff5722);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 70px;
+}
+
         #miniCart {
     background-color: #8B4513;   /* jaggery brown */
     color: #FFFDD0;
@@ -212,6 +227,21 @@
     </section>
 
    <script>
+       document.getElementById("qty").addEventListener("input", function() {
+    let qty = this.value;
+    let price = 79;
+    let total = qty * price;
+
+    if(qty == 1){
+        total = total * 0.60; // 40% OFF
+    }
+    if(qty >= 2){
+        total = total * 0.50; // 50% OFF
+    }
+
+    document.getElementById("total").innerText = Math.round(total);
+});
+
        let reviews = [
     { text: "GudCubes tastes amazing and is healthier than sugar!", name: "Ramesh, Delhi" },
     { text: "Perfect for my daily tea. Loved the natural sweetness!", name: "Anita, Jaipur" },
@@ -283,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
