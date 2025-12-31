@@ -193,6 +193,15 @@
     <!-- Placeholder sections for Why Us and Order -->
     <section id="why-us" style="padding: 2rem 1rem; text-align: center; background-color: #8B4513; color: #FFFDD0;">
         <h2>Why Us</h2>
+        <section id="reviews" style="padding:30px; background:#FFFDD0; text-align:center;">
+<h2 style="color:#006400;">What Our Customers Say</h2>
+
+<div id="reviewBox" style="background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); max-width:500px; margin:auto;">
+    <p id="reviewText">"GudCubes tastes amazing and is healthier than sugar!"</p>
+    <strong id="reviewName">– Ramesh, Delhi</strong>
+</div>
+</section>
+
         <p>At GudVeda, we bring you pure, natural, ayurvedic sweetness straight from traditional Indian roots. Premium quality, simple ingredients.</p>
     </section>
 
@@ -203,6 +212,19 @@
     </section>
 
    <script>
+       let reviews = [
+    { text: "GudCubes tastes amazing and is healthier than sugar!", name: "Ramesh, Delhi" },
+    { text: "Perfect for my daily tea. Loved the natural sweetness!", name: "Anita, Jaipur" },
+    { text: "Finally found pure desi gud without chemicals.", name: "Vikas, Lucknow" }
+];
+
+let i = 0;
+setInterval(() => {
+    document.getElementById("reviewText").innerText = `"${reviews[i].text}"`;
+    document.getElementById("reviewName").innerText = "– " + reviews[i].name;
+    i = (i + 1) % reviews.length;
+}, 3000);
+
 document.addEventListener("DOMContentLoaded", function() {
     let price = 79;
     let cartQty = 0;
@@ -261,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
