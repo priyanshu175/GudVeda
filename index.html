@@ -43,16 +43,15 @@
     margin-left: 5px;
 }
 
-        .cart-box {
-.product-img {
-    width: 160px;     3
-    height: 160px;    4
+    .product-img {
+    width: 160px;
+    height: 160px;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 12px;
+    display: block;
+    margin: 15px auto;
 }
 
-    margin-top: 20px;
-}
 
         /* Mobile-first CSS */
         body {
@@ -193,7 +192,7 @@
     <section id="product" class="product">
         <h2>GudCubes</h2>
         <div class="product-details">
-              <img src="gudcubes.png" alt="GudVeda GudCubes">
+              <img src="gudcubes.png" alt="GudVeda GudCubes" class="product-img">
             <div class="cart-box">
     <label>Select Quantity</label><br>
     <input type="number" id="qty" value="1" min="1" style="padding:10px; width:80px; font-size:18px;">
@@ -320,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
