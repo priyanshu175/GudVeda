@@ -14,6 +14,25 @@
 <meta name="keywords" content="Gud cubes, Desi Gud, Jaggery cubes, GudVeda, Healthy sweet">
 
     <style>
+        .social-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-float img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: white;
+    padding: 6px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
  .insta-link {
     position: fixed;
     bottom: 20px;
@@ -331,11 +350,21 @@ document.addEventListener("DOMContentLoaded", function() {
     <button onclick="closeCart()">Close</button>
 </div>
 <a href="https://www.instagram.com/itsgudveda/" target="_blank" class="insta-link">
-    <img src="instagram_icon.png" class="insta-icon">
+    <img src="Instagram_icon.png" class="insta-icon">
 </a>
+<div class="social-float">
+    <a href="https://wa.me/919906073219" target="_blank">
+        <img src="./WhatsAppicon.svg">
+    </a>
+
+    <a href="https://www.instagram.com/itsgudveda/" target="_blank">
+        <img src="./Instagram_icon.png">
+    </a>
+</div>
 
 </body>
 </html>
+
 
 
 
