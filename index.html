@@ -194,6 +194,74 @@
             }
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCci7TPUXRLc6vHMzm5DHWQgS3vWnolHoM",
+  authDomain: "gudveda-4710c.firebaseapp.com",
+  projectId: "gudveda-4710c",
+  storageBucket: "gudveda-4710c.firebasestorage.app",
+  messagingSenderId: "197101473152",
+  appId: "1:197101473152:web:de8012324c59c1eb1a8565"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+    // STAR SELECT SYSTEM
+let selectedRating = 5;
+
+document.querySelectorAll(".star").forEach(star => {
+    star.addEventListener("click", function(){
+        selectedRating = this.getAttribute("data-star");
+        document.getElementById("custRating").value = selectedRating;
+
+        document.querySelectorAll(".star").forEach(s => s.classList.remove("active"));
+        for(let i=0;i<selectedRating;i++){
+            document.querySelectorAll(".star")[i].classList.add("active");
+        }
+    });
+});
+
+// LOAD REVIEWS FROM FIREBASE
+function loadReviews(){
+    db.collection("reviews").orderBy("time","desc").onSnapshot(snapshot=>{
+        let html="";
+        snapshot.forEach(doc=>{
+            let r = doc.data();
+            html += `
+            <div style="background:white;padding:15px;margin:10px;border-radius:10px">
+                <strong>${r.name}</strong>
+                <p>${"★".repeat(r.rating)}</p>
+                <p>${r.text}</p>
+            </div>`;
+        });
+        document.getElementById("reviewList").innerHTML = html;
+    });
+}
+loadReviews();
+
+// SUBMIT REVIEW
+document.getElementById("reviewForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    let name = custName.value;
+    let text = custReview.value;
+    let rating = custRating.value;
+
+    await db.collection("reviews").add({
+        name,
+        text,
+        rating,
+        time: Date.now()
+    });
+
+    this.reset();
+});
+
+</script>
+
 </head>
 <body>
     <header id="home">
@@ -331,55 +399,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
     }
 });
-       document.addEventListener("DOMContentLoaded", function(){
-
-    let selectedRating = 5;
-    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-
-    document.querySelectorAll(".star").forEach(star => {
-        star.addEventListener("click", function(){
-            selectedRating = this.getAttribute("data-star");
-            document.getElementById("custRating").value = selectedRating;
-
-            document.querySelectorAll(".star").forEach(s => s.classList.remove("active"));
-            for(let i=0;i<selectedRating;i++){
-                document.querySelectorAll(".star")[i].classList.add("active");
-            }
-        });
-    });
-
-    function showReviews(){
-        let html = "";
-        reviews.forEach(r => {
-            html += `
-            <div style="background:white; padding:15px; margin:10px auto; max-width:400px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1);">
-                <strong>${r.name}</strong>
-                <p>${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</p>
-                <p>${r.text}</p>
-            </div>`;
-        });
-        document.getElementById("reviewList").innerHTML = html;
-    }
-
-    document.getElementById("reviewForm").addEventListener("submit", function(e){
-        e.preventDefault();
-
-        let name = document.getElementById("custName").value;
-        let text = document.getElementById("custReview").value;
-        let rating = document.getElementById("custRating").value;
-
-        reviews.push({name, text, rating});
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-
-        this.reset();
-        selectedRating = 5;
-        document.getElementById("custRating").value = 5;
-
-        showReviews();
-    });
-
-    showReviews();
-});
+      
 
 
 </script>
@@ -407,6 +427,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
