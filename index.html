@@ -287,19 +287,7 @@
     document.getElementById("total").innerText = Math.round(total);
 });
 
-       let reviews = [
-    { text: "GudCubes tastes amazing and is healthier than sugar!", name: "Ramesh, Delhi" },
-    { text: "Perfect for my daily tea. Loved the natural sweetness!", name: "Anita, Jaipur" },
-    { text: "Finally found pure desi gud without chemicals.", name: "Vikas, Lucknow" }
-];
-
-let i = 0;
-setInterval(() => {
-    document.getElementById("reviewText").innerText = `"${reviews[i].text}"`;
-    document.getElementById("reviewName").innerText = "– " + reviews[i].name;
-    i = (i + 1) % reviews.length;
-}, 3000);
-
+      
 document.addEventListener("DOMContentLoaded", function() {
     let price = 79;
     let cartQty = 0;
@@ -343,51 +331,54 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
     }
 });
-       let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+       document.addEventListener("DOMContentLoaded", function(){
 
-function showReviews() {
-    let html = "";
-    reviews.forEach(r => {
-        html += `
-        <div style="background:white; padding:15px; margin:10px auto; max-width:400px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1);">
-            <strong>${r.name}</strong>
-            <p>${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</p>
-<p>${r.text}</p>
+    let selectedRating = 5;
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
-        </div>
-        `;
+    document.querySelectorAll(".star").forEach(star => {
+        star.addEventListener("click", function(){
+            selectedRating = this.getAttribute("data-star");
+            document.getElementById("custRating").value = selectedRating;
+
+            document.querySelectorAll(".star").forEach(s => s.classList.remove("active"));
+            for(let i=0;i<selectedRating;i++){
+                document.querySelectorAll(".star")[i].classList.add("active");
+            }
+        });
     });
-    document.getElementById("reviewList").innerHTML = html;
-}
 
-document.getElementById("reviewForm").addEventListener("submit", function(e){
-    e.preventDefault();
+    function showReviews(){
+        let html = "";
+        reviews.forEach(r => {
+            html += `
+            <div style="background:white; padding:15px; margin:10px auto; max-width:400px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1);">
+                <strong>${r.name}</strong>
+                <p>${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</p>
+                <p>${r.text}</p>
+            </div>`;
+        });
+        document.getElementById("reviewList").innerHTML = html;
+    }
 
-    let name = document.getElementById("custName").value;
-    let text = document.getElementById("custReview").value;
+    document.getElementById("reviewForm").addEventListener("submit", function(e){
+        e.preventDefault();
 
-    let rating = document.getElementById("custRating").value;
-reviews.push({name, text, rating});
+        let name = document.getElementById("custName").value;
+        let text = document.getElementById("custReview").value;
+        let rating = document.getElementById("custRating").value;
 
-    localStorage.setItem("reviews", JSON.stringify(reviews));
+        reviews.push({name, text, rating});
+        localStorage.setItem("reviews", JSON.stringify(reviews));
 
-    this.reset();
+        this.reset();
+        selectedRating = 5;
+        document.getElementById("custRating").value = 5;
+
+        showReviews();
+    });
+
     showReviews();
-});
-
-showReviews();
-       let selectedRating = 5;
-
-document.querySelectorAll(".star").forEach(star => {
-    star.addEventListener("click", function(){
-        selectedRating = this.getAttribute("data-star");
-        document.getElementById("custRating").value = selectedRating;
-
-        document.querySelectorAll(".star").forEach(s => s.classList.remove("active"));
-        for(let i=0; i<selectedRating; i++){
-            document.querySelectorAll(".star")[i].classList.add("active");
-        }
-    });
 });
 
 
@@ -416,6 +407,7 @@ document.querySelectorAll(".star").forEach(star => {
 
 </body>
 </html>
+
 
 
 
