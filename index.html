@@ -233,17 +233,18 @@
     <!-- Placeholder sections for Why Us and Order -->
     <section id="why-us" style="padding: 2rem 1rem; text-align: center; background-color: #8B4513; color: #F4F4F4;">
         <h2>Why Us</h2>
-        <section id="reviews" style="padding:30px; background:#F4F4F4; text-align:center;">
-<h2 style="color:#006400;">What Our Customers Say</h2>
+        <section id="reviews" style="padding:30px; background:#FAF8F3; text-align:center;">
+<h2 style="color:#006400;">Customer Reviews</h2>
 
-<div id="reviewBox" style="background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); max-width:500px; margin:auto;">
-    <p id="reviewText">"GudCubes tastes amazing and is healthier than sugar!"</p>
-    <strong id="reviewName">– Ramesh, Delhi</strong>
-</div>
+<form id="reviewForm">
+    <input type="text" id="custName" placeholder="Your Name" required style="padding:10px; width:90%; max-width:400px;"><br><br>
+    <textarea id="custReview" placeholder="Write your review..." required style="padding:10px; width:90%; max-width:400px; height:80px;"></textarea><br><br>
+    <button type="submit" class="btn">Submit Review</button>
+</form>
+
+<div id="reviewList" style="margin-top:30px;"></div>
 </section>
 
-        <p>At GudVeda, we bring you pure, natural, ayurvedic sweetness straight from traditional Indian roots. Premium quality, simple ingredients.</p>
-    </section>
 
     <section id="order" style="padding: 2rem 1rem; text-align: center; background-color: #006400; color: #F4F4F4;">
         <h2>Order Now</h2>
@@ -323,6 +324,36 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open("https://wa.me/919906073219?text=" + encodeURIComponent(msg), "_blank");
     }
 });
+       let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+function showReviews() {
+    let html = "";
+    reviews.forEach(r => {
+        html += `
+        <div style="background:white; padding:15px; margin:10px auto; max-width:400px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.1);">
+            <strong>${r.name}</strong>
+            <p>${r.text}</p>
+        </div>
+        `;
+    });
+    document.getElementById("reviewList").innerHTML = html;
+}
+
+document.getElementById("reviewForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.getElementById("custName").value;
+    let text = document.getElementById("custReview").value;
+
+    reviews.push({name, text});
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+    this.reset();
+    showReviews();
+});
+
+showReviews();
+
 </script>
 
 
@@ -348,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
